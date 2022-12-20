@@ -1,0 +1,21 @@
+libspatialaudio (0.3.0+git20180730+dfsg1-deepin1) unstable; urgency=medium
+
+  * Rebuild
+
+ -- Deepin Packages Builder <packages@deepin.org>  Fri, 11 Nov 2022 17:59:59 +0800
+
+libspatialaudio (0.3.0+git20180730+dfsg1-2) unstable; urgency=medium
+
+  * debian/control:
+    - Fix Homepage.
+    - Set Rules-Requires-Root: no.
+    - Bump Standards-Version.
+  * debian/: Bump debhelper compat to 12.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 05 Jan 2019 15:07:54 +0100
+
+libspatialaudio (0.3.0+git20180730+dfsg1-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #905060)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 31 Jul 2018 05:31:46 +0200

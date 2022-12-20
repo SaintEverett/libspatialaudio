@@ -1,0 +1,21 @@
+From: Sebastian Ramacher <sramacher@debian.org>
+Date: Tue, 31 Jul 2018 03:33:58 +0200
+Subject: Do not prefer static library
+
+---
+ cmake/Modules/FindMySofa.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/Modules/FindMySofa.cmake b/cmake/Modules/FindMySofa.cmake
+index 3b25070..d65338a 100644
+--- a/cmake/Modules/FindMySofa.cmake
++++ b/cmake/Modules/FindMySofa.cmake
+@@ -22,7 +22,7 @@ find_path(MYSOFA_ROOT_DIR
+ )
+ 
+ find_library(MYSOFA_LIBRARIES
+-    NAMES libmysofa.a mysofa
++    NAMES libmysofa mysofa
+     HINTS ${MYSOFA_ROOT_DIR}/lib
+ )
+ 

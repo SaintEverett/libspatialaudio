@@ -1,0 +1,4 @@
+usr/include
+usr/lib/*/libspatialaudio.a
+usr/lib/*/libspatialaudio.so
+usr/lib/*/pkgconfig
