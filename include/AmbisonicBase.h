@@ -28,39 +28,18 @@ class CAmbisonicBase
 public:
     CAmbisonicBase();
     virtual ~CAmbisonicBase() = default;
-    /**
-        Gets the order of the current Ambisonic configuration.
-    */
-    unsigned GetOrder();
-    /**
-        Gets true or false depending on whether the current Ambisonic
-        configuration has height(3D).
-    */
-    bool GetHeight();
-    /**
-        Gets the number of B-Format channels in the current Ambisonic
-        configuration.
-    */
-    unsigned GetChannelCount();
-    /**
-        Re-create the object for the given configuration. Previous data is
-        lost.
-    */
-    virtual bool Configure(unsigned nOrder, bool b3D, unsigned nMisc);
-    /**
-        Not implemented.
-    */
-    virtual void Reset() = 0;
-    /**
-        Not implemented.
-    */
-    virtual void Refresh() = 0;
+    unsigned GetOrder(); // returns order of current ambisonic config
+    bool GetHeight(); // returns true of false regarding whether or not the config has height
+    unsigned GetChannelCount(); // returns the number of b format channels
+    virtual bool Configure(unsigned nOrder, bool b3D, unsigned nMisc); // recreates the object with the new configuration aligning to arguments 
+    virtual void Reset() = 0; // not implemented
+    virtual void Refresh() = 0; // not implemented
 
-protected:
-    unsigned m_nOrder;
-    bool m_b3D;
-    unsigned m_nChannelCount;
-    bool m_bOpt;
+protected: // class info 
+    unsigned m_nOrder; // order 
+    bool m_b3D; // Y or N to height
+    unsigned m_nChannelCount; // channel count
+    bool m_bOpt; // 
 };
 
 #endif //_AMBISONIC_BASE_H

@@ -30,45 +30,15 @@ class CBFormat : public CAmbisonicBase
 {
 public:
     CBFormat();
-    /**
-        Returns the number of samples.
-    */
-    unsigned GetSampleCount();
-    /**
-        Re-create the buffers needed for the given configuration. Previous
-        buffer contents are lost.
-    */
-    bool Configure(unsigned nOrder, bool b3D, unsigned nSampleCount);
-    /**
-        Fill the buffer with zeros.
-    */
-    void Reset();
-    /**
-        Not implemented.
-    */
-    void Refresh();
-    /**
-        Copy a number of samples to a specific channel of the BFormat.
-    */
-    void InsertStream(float* pfData, unsigned nChannel, unsigned nSamples);
-    /**
-        Copy a number of samples from a specific channel of the BFormat.
-    */
-    void ExtractStream(float* pfData, unsigned nChannel, unsigned nSamples);
-
-    /**
-        Copy the content of the buffer. It is assumed that the two objects are
-        of the same configuration.
-    */
-    void operator = (const CBFormat &bf);
-    /**
-        Returns true if the configuration of the two objects match.
-    */
-    bool operator == (const CBFormat &bf);
-    /**
-        Returns true if the configuration of the two objects don't match.
-    */
-    bool operator != (const CBFormat &bf);
+    unsigned GetSampleCount(); // returns sample count of buffers
+    bool Configure(unsigned nOrder, bool b3D, unsigned nSampleCount); // recreate the buffers needed for the given config
+    void Reset(); // fill buffers with zeros
+    void Refresh(); // not implemented
+    void InsertStream(float* pfData, unsigned nChannel, unsigned nSamples); // copy a number of samples to a specified channel in the bformat
+    void ExtractStream(float* pfData, unsigned nChannel, unsigned nSamples); // copy a number of samples from a specified channel in the bformat
+    void operator = (const CBFormat &bf); // copy the content of a buffer to another, this operator assumes they are of the same config (order, channel count, etc. look at AmbisonicBase.h regarding configuration
+    bool operator == (const CBFormat &bf); // returns 1 (true) if two buffers are of the same configuration
+    bool operator != (const CBFormat &bf); // return 1 (true) if two buffers are NOT of the same configuration
     CBFormat& operator += (const CBFormat &bf);
     CBFormat& operator -= (const CBFormat &bf);
     CBFormat& operator *= (const CBFormat &bf);
@@ -78,14 +48,15 @@ public:
     CBFormat& operator *= (const float &fValue);
     CBFormat& operator /= (const float &fValue);
 
-protected:
-    unsigned m_nSamples;
-    unsigned m_nDataLength;
-    std::vector<float> m_pfData;
-    std::unique_ptr<float*[]> m_ppfChannels;
+protected: // class data & info
+    unsigned m_nSamples; // # of samples in buffer
+    unsigned m_nDataLength; // m_nSamples * m_nChannelCount (how many sets of samples)
+    std::vector<float> m_pfData; // sample data
+    std::unique_ptr<float*[]> m_ppfChannels; 
 
     //friend classes cannot be pure abstract type,
     //so must list each friend class manually
+    // listing these as friends allows the below classes to access protected data of the BFormat class
     friend class CAmbisonicEncoder;
     friend class CAmbisonicEncoderDist;
     friend class CAmbisonicDecoder;

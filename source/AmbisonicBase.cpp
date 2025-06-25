@@ -25,24 +25,24 @@ CAmbisonicBase::CAmbisonicBase()
 
 unsigned CAmbisonicBase::GetOrder()
 {
-    return m_nOrder;
+    return m_nOrder; // return order
 }
 
 bool CAmbisonicBase::GetHeight()
 {
-    return m_b3D;
+    return m_b3D; // return Yes or No regarding height
 }
 
 unsigned CAmbisonicBase::GetChannelCount()
 {
-    return m_nChannelCount;
+    return m_nChannelCount; // return # of b format channels
 }
 
-bool CAmbisonicBase::Configure(unsigned nOrder, bool b3D, unsigned nMisc)
+bool CAmbisonicBase::Configure(unsigned nOrder, bool b3D, unsigned nMisc) // assign arguments to internal data
 {
     m_nOrder = nOrder;
     m_b3D = b3D;
-    m_nChannelCount = OrderToComponents(m_nOrder, m_b3D);
+    m_nChannelCount = OrderToComponents(m_nOrder, m_b3D); // 
 
     return true;
 }
